@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services -Shoplytics</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+   <header>
+    <img src="Images/Logo.png" alt="Shoplytics Logo" />
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="economic.html">Economic Overview</a></li>
+      <li><span class="current">Pricing</span></li>
+      <li><a href="product.html">Product Breakdown</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1 style="text-align: center;">Track Your Favorite Category Prices</h1>
+    <p style="text-align: center;">Analyze the price trends in your favorite shopping categories</p>
+<br>
+    <section class="gallery-section">
+      <h2>Featured Categories</h2>
+      <div class="gallery-grid">
+        <!-- Row 1 -->
+        <div class="photo-item">
+          <h3>Technology</h3>
+          <a href="https://www.wsj.com/tech?mod=nav_left_section" target="WSJ Tech">
+            <img src="Images/Tech.png" alt="Computer and phone on desk" data-color="red"/>
+          </a>
+        </div>
+        <div class="photo-item">
+          <h3>Beauty & Wellness</h3>
+          <a href="https://www.wsj.com/health?mod=nav_left_section" target="WSJ Health">
+            <img src="Images/Makeup.png" alt="Makeup supplies" data-color="green" />
+          </a>
+        </div>
+        <div class="photo-item">
+          <h3>Groceries</h3>
+          <a href="https://www.wsj.com/lifestyle?mod=nav_left_section" target="WSJ Lifestyle">
+            <img src="Images/Groceries.png" alt="Groceries in the store" data-color="yellow" />
+          </a>
+        </div>
+        <div class="photo-item">
+          <h3>Clothing</h3>
+          <a href="https://www.wsj.com/style?mod=nav_left_section" target="WSJ Styles">
+            <img src="Images/Clothing.png" alt="Clothing on a rack" data-color="red" />
+          </a>
+        </div>
+        <div class="photo-item">
+          <h3>Fitness</h3>
+          <a href="https://www.wsj.com/sports?mod=nav_left_section" target="WSJ Sports">
+            <img src="Images/Fitness.png" alt="Free Weights" data-color="green" />
+          </a>
+        </div>
+        <div class="photo-item">
+          <h3>Home Goods</h3>
+          <a href="https://www.wsj.com/real-estate?mod=nav_left_section" target="WSJ Real Estate">
+            <img src="Images/Home.png" alt="Home photo wiht chair" data-color="yellow" />
+          </a>
+        </div>        
+       
+      </div>
+    </section>
+  </main>
+  
+<script>
+    // Add hover color effect
+    document.querySelectorAll('.gallery-grid img').forEach(img => {
+      img.addEventListener('mouseenter', () => {
+        const color = img.getAttribute('data-color');
+        img.style.filter = `brightness(0) saturate(100%) invert(%)`;
+        if (color === 'red') {
+          img.style.filter = 'brightness(0) saturate(100%) invert(20%) sepia(100%) hue-rotate(-50deg) saturate(300%) contrast(100%)';
+        } else if (color === 'green') {
+          img.style.filter = 'brightness(0) saturate(100%) invert(30%) sepia(50%) hue-rotate(100deg) saturate(300%) contrast(100%)';
+        } else if (color === 'yellow') {
+          img.style.filter = 'brightness(0) saturate(100%) invert(60%) sepia(20%) hue-rotate(45deg) saturate(300%) contrast(100%)';
+        }
+      });
+      img.addEventListener('mouseleave', () => {
+        img.style.filter = '';
+      });
+    });
+  </script>
+
+</body>
+</html>
