@@ -1,15 +1,37 @@
-/* Reset some default spacing */
+
+/* Lock the logo image size to prevent resizing on different screens */
+header img {
+  background-color: transparent;
+  width: 200px; /* or your desired fixed width */
+  height: auto; /* maintain aspect ratio */
+  max-width: none; /* prevent it from shrinking */
+  display: block; /* remove any inline spacing issues */
+}
+
+/* Make nav span full width and ensure responsiveness */
+nav {
+  width: 100%;
+  background-color: #ddd; /* or your preferred background */
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* Reset some default spacing and box-sizing */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Base styles for the entire website (Mobile First) */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f4f4f4; /* Light background by default */
+  color: #333; /* Default text color */
   padding: 1rem;
   display: grid;
-  /* Mobile-first: single column layout */
+  justify-content: center; /* center horizontally */
+  align-items: center;     /* center vertically */
   grid-template-columns: 1fr;
   grid-template-areas:
     "header"
@@ -22,42 +44,52 @@ body {
   gap: 1rem;
 }
 
-header {
-  grid-area: header;
-  background: #f2f2f2;
-  padding: 1rem;
+/* Visual distinctions for different breakpoints (initial) */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4; /* Light background for mobile */
+  color: #333; /* Default text color */
 }
 
+/* Header styles */
+header {
+  grid-area: header;
+  background-color: transparent;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* Navigation styles */
 nav {
   grid-area: nav;
-  background: #ddd;
+  background-color: #ddd;
   padding: 1rem;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
 nav li {
-  margin-left: 1.5rem;
+  margin: 0;
 }
 
-/* Navbar link style with transition */
 nav a {
   text-decoration: none;
-  color: #333;
+  color: #222;
   font-weight: bold;
   transition: color 0.3s ease;
 }
 
-/* Hover state changes the color */
 nav a:hover {
   color: #007acc;
 }
 
-/* Current page styling: non-clickable, distinct color */
+/* Current page styling */
 nav .current {
   font-weight: bold;
   color: #1b00cc;
@@ -65,38 +97,98 @@ nav .current {
   pointer-events: none;
 }
 
+/* Main content */
 main {
   grid-area: main;
-  background: #eee;
+  background-color: #eee;
   padding: 1rem;
 }
 
+/* Aside, section, article styles */
 aside {
   grid-area: aside;
-  background: #f5f5f5;
+  background-color: #f5f5f5;
   padding: 1rem;
 }
 
 section {
   grid-area: section;
-  background: #fafafa;
+  background-color: #fafafa;
   padding: 1rem;
 }
 
 article {
   grid-area: article;
-  background: #fcfcfc;
+  background-color: #fcfcfc;
   padding: 1rem;
 }
 
+/* Footer styles */
 footer {
   grid-area: footer;
-  background: #ddd;
+  background-color: #ddd;
   padding: 1rem;
   text-align: center;
 }
 
-/* Tablet Portrait: 2 columns (min-width: 600px) */
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Additional layout: Two-column layout for wider screens (default mobile) */
+.two-column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.two-column .column {
+  flex: 1;
+  min-width: 0;
+  background: #f0f0f0;
+  padding: 15px;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* List styles */
+ul {
+  list-style-position: inside;
+  text-align: left;
+}
+
+/* Gallery section styles */
+.gallery-section h2 {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* default to 1 column on mobile */
+  gap: 1em;
+}
+
+.photo-item {
+  text-align: center;
+}
+
+.photo-item img {
+  width: 100%;
+  max-width: 150px;
+  cursor: pointer;
+  transition: filter 0.3s;
+}
+
+/* Media Queries for different breakpoints */
+
+/* Tablet Portrait: 600px and above */
 @media (min-width: 600px) {
   body {
     grid-template-columns: repeat(2, 1fr);
@@ -106,10 +198,16 @@ footer {
       "aside section"
       "article article"
       "footer footer";
+    background-color: #e0f7fa; /* Slightly different background for tablets */
+  }
+
+  /* Gallery grid: 3 columns on tablets */
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* Tablet Landscape / Small Desktop: 3 columns (min-width: 900px) */
+/* Tablet Landscape / Small Desktop: 900px and above */
 @media (min-width: 900px) {
   body {
     grid-template-columns: repeat(3, 1fr);
@@ -118,169 +216,27 @@ footer {
       "main main main"
       "aside section article"
       "footer footer footer";
+    background-color: #ffe0b2; /* Different background for small desktops */
+  }
+
+  /* Gallery grid: 4 columns on small desktops */
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
-/* Large Desktop: 4 columns (min-width: 1200px) */
+/* Large Desktop / Larger screens: 1200px and above */
 @media (min-width: 1200px) {
   body {
     grid-template-columns: repeat(4, 1fr);
     grid-template-areas:
-      "header header header nav"
+      "header nav"
       "aside main section article"
       "footer footer footer footer";
+    background-color: #c8e6c9; /* Different background for large desktops */
   }
-}
 
-/*index.html*/
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-.two-column {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
-
-.two-column .column {
-  flex: 1; /* expand equally */
-  min-width: 0;
-}
-
-html, body {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.two-column {
-  width: 100%; /* ensure full width */
-  display: flex; /* default mobile layout */
-  flex-direction: column;
-  gap: 20px;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-.two-column .column {
-  background: #f0f0f0;
-  padding: 15px;
-  border-radius: 8px;
-  width: 100%; /* make sure each column fills available space */
-  box-sizing: border-box;
-}
-
-/* Switch to grid on larger screens for 2 columns */
-@media (min-width: 768px) {
-  .two-column {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    width: 100%;
-  }
-}
-
-/*Economic list*/
-ul {
-  text-align: left;
-  list-style-position: inside; /* Optional: keeps bullet points inside the list */
-}
-
-/* Basic Reset and Mobile-First Styles */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-  margin: 0;
-  padding: 0;
-}
-
-/* Header */
-header {
-  background-color: #222;
-  color: #fff;
-  padding: 1em;
-  text-align: center;
-}
-
-/* Navigation */
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-}
-
-nav li {
-  margin: 0 1em;
-}
-
-nav a {
-  text-decoration: none;
-  color: #222;
-}
-
-/* Main Content */
-main {
-  padding: 1em;
-}
-
-/* Gallery Section */
-.gallery-section h2 {
-  text-align: center;
-  margin-bottom: 1em;
-}
-
-/* Grid layout for images */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: 1fr; /* mobile: 1 column */
-  gap: 1em;
-}
-
-/* Style for each photo item */
-.photo-item {
-  text-align: center;
-}
-
-/* Images styling */
-.photo-item img {
-  width: 100%;
-  max-width: 150px;
-  height: auto;
-  cursor: pointer;
-  transition: filter 0.3s;
-}
-
-/* Footer */
-footer {
-  background-color: #222;
-  color: #fff;
-  text-align: center;
-  padding: 1em;
-  margin-top: 2em;
-}
-
-/* Media Queries for larger screens */
-
-/* Tablet (min-width: 768px): 3 columns */
-@media (min-width: 768px) {
-  .gallery-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Desktop (min-width: 1024px): 4 columns */
-@media (min-width: 1024px) {
-  .gallery-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-/* Large Desktop (min-width: 1440px): 6 columns */
-@media (min-width: 1440px) {
+  /* Gallery grid: 6 columns on large desktops */
   .gallery-grid {
     grid-template-columns: repeat(6, 1fr);
   }
